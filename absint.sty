@@ -1,0 +1,37 @@
+% Florian Sihler, 2024
+% Licensed under MIT License
+% https://opensource.org/licenses/MIT
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{absint}[2024/12/08 Florian Sihler - Notation for Abstract Interpretation]
+
+\RequirePackage{amssymb}
+
+
+% to allow to switch to hyperlink/hypertarget etc.
+\def\absint@label{\phantomsection\label}
+\def\absint@reflab#1#2{\hyperref[#1]{#2}}
+\def\absintstyle#1{\mathcolor{purple}{#1}}
+\def\absint@{absint@}
+\def\absint@asfont#1{\mathsf{#1}}
+\def\absint@symbol#1{\absint@reflab{sym:#1}{\absintstyle{\csname#1\endcsname}}}
+% promote conventional math symbol to absint symbol
+\def\absint@lift#1{\csletcs{\absint@#1}{#1}\csdef{#1}{\absint@symbol{\absint@#1}}}
+
+% TODO: allow to define a marginnote entry/gls link for these symbols!
+% TODO: allow to register user defined symbols?
+
+\def\absintmark#1{\absint@label{sym:\absint@#1}}
+% activate absint notation
+\def\absint{%
+\begingroup
+\def\asdef{\overset{\absintstyle{\absint@asfont{def}}}}%
+\def\eq{=}\let\emptyset\varnothing\let\union\cup\let\intersect\cap\let\bigunion\bigcup\let\bigintersect\bigcap%
+\def\powerset{\mathcal{P}}\let\compose\circ%
+\def\N{\mathbb{N}}\def\Z{\mathbb{Z}}\def\Q{\mathbb{Q}}\def\R{\mathbb{R}}\def\C{\mathbb{C}}\def\Bool{\mathbb{2}}%
+\@for\@temp:=lor,land,lnot,iff,implies,eq,emptyset,union,intersect,bigunion,bigintersect,cup,cap,bigcup,bigcap,subset,subseteq,setminus,powerset,in,times,supset,supseteq,leq,le,ge,geq,ni,sqsubset,sqsubseteq,sqsupseteq,sqsupset,to,mapsto,compose,N,Z,Q,R,C,Bool,top,bot,forall,exist,sqcup,bigsqcup,sqcap,bigsqcap\do{\expandafter\absint@lift\expandafter{\@temp}}%
+}
+\def\endabsint{\endgroup}
+\def\absexpr#1{\ensuremath{\absint#1\endabsint}}
+
+
+\endinput
