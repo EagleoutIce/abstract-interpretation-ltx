@@ -28,8 +28,8 @@
 \def\eq{=}\let\emptyset\varnothing\let\union\cup\let\intersect\cap\let\bigunion\bigcup\let\bigintersect\bigcap%
 \def\powerset{\mathcal{P}}\let\P\powerset\let\compose\circ\def\Set##1{\bgroup\def\For{\;\middle|\;}\let\Given\For\left\{\,##1\,\right\}\egroup}%
 \def\N{\mathbb{N}}\def\Z{\mathbb{Z}}\def\Q{\mathbb{Q}}\def\R{\mathbb{R}}\def\C{\mathbb{C}}\def\Bool{\mathbb{2}}\def\Universe{\mathbb{U}}%
-\let\partof\sqsubseteq\let\strictpartof\sqsubset
-\@for\@temp:=lor,land,lnot,iff,implies,eq,emptyset,union,intersect,bigunion,bigintersect,cup,cap,bigcup,bigcap,subset,subseteq,setminus,powerset,in,times,supset,supseteq,leq,le,ge,geq,ni,sqsubset,sqsubseteq,sqsupseteq,sqsupset,to,mapsto,compose,N,Z,Q,R,C,Bool,Universe,top,bot,forall,exists,sqcup,bigsqcup,sqcap,bigsqcap,partof,strictpartof\do{\expandafter\absint@lift\expandafter{\@temp}}%
+\let\partof\sqsubseteq\let\strictpartof\sqsubset\def\lub{\sqcup\,}\def\glb{\sqcap\,}%
+\@for\@temp:=lor,land,lnot,iff,implies,eq,emptyset,union,intersect,bigunion,bigintersect,cup,cap,bigcup,bigcap,subset,subseteq,setminus,powerset,in,times,supset,supseteq,leq,le,ge,geq,ni,sqsubset,sqsubseteq,sqsupseteq,sqsupset,to,mapsto,compose,N,Z,Q,R,C,Bool,Universe,top,bot,forall,exists,sqcup,bigsqcup,sqcap,bigsqcap,partof,strictpartof,equiv\do{\expandafter\absint@lift\expandafter{\@temp}}%
 }
 \def\endabsint{\endgroup}
 \def\absexpr#1{\ensuremath{\absint#1\endabsint}}
